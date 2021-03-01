@@ -1,6 +1,11 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
+require("dotenv").config();
+//const { Book } = require("./models");
+
+// initialise server
 const app = express();
 
 // Define middleware here
@@ -10,6 +15,18 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+// connect to database for deployment
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+// check to see if connected to test db
+const conn = mongoose.connection;
+conn.on("error", console.error.bind(console, "connection error:"));
+conn.once("open", function () {
+  console.log("connected to db");
+});
 
 // Define API routes here
 
