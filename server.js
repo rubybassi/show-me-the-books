@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // connect to database for deployment
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/book", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -28,7 +28,8 @@ conn.once("open", function () {
   console.log("connected to db");
 });
 
-// Define API routes here
+// map routers
+app.use('/', require('./routes/api.js'));
 
 // Send every other request to the React app
 // Define any API routes before this runs
