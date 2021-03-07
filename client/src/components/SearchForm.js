@@ -6,7 +6,9 @@ import BookCard from "./BookCard";
 const SearchForm = () => {
   const [userSearch, setUserSearch] = useState("");
   const [books, setBooks] = useState([]);
+  const [saved, setSaved] = useState(false);
 
+  //console.log('saved books on render', savedBooks);
   //console.log("intial render");
   const fetchBooks = async (e) => {
     if (userSearch.length < 3) return;
@@ -21,9 +23,26 @@ const SearchForm = () => {
       setUserSearch('');
   };
 
-  const saveBook = (id) => {
-    console.log('save book fn', id);
+  const saveBook = (book) => {
+    const newBook = {
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://picsum.photos/200/300",
+      link: book.volumeInfo.previewLink,
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors
+    }
     
+    fetch('/api/books', {
+      method: 'post',
+      headers: {
+     'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newBook)
+      }).then(res => res.json())
+      .then(res => console.log('book saved in db', res));
+    setSaved(true);
+   // setSaved(false); set timeout here to delay success message
   };
 
   return (
@@ -51,6 +70,9 @@ const SearchForm = () => {
         </>
       ) : (
         <h3>Your results will appear here</h3>
+      )}
+      {saved && (
+        <h3>booked saved</h3>
       )}
     </>
   );

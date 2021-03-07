@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 const BookCard = ({ books, saveBook }) => {
+
   return (
       <Container>
         <Row>    
@@ -18,7 +19,7 @@ const BookCard = ({ books, saveBook }) => {
               <Card.Title>Written by: {book.volumeInfo.authors && book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(", ") : book.volumeInfo.authors}</Card.Title>
               <Card.Text>{book.volumeInfo.description}</Card.Text>
               <a href={book.volumeInfo.previewLink}>view book</a>{" "}
-              <Button variant="primary" onClick={() => saveBook(book.id)}>save book</Button>
+              <Button variant="primary" onClick={() => saveBook(book)}>save book</Button>
             </Card.Body>
           </Card>
           </Col>
