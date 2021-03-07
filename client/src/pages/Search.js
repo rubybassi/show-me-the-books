@@ -4,8 +4,6 @@ import SearchForm from "../components/SearchForm";
 import Container from "react-bootstrap/Container";
 
 const Search = () => {
-
-
   return (
     <div>
       <Header />

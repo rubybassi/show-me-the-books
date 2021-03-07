@@ -49,10 +49,8 @@ const SearchForm = () => {
     <>
       <Form>
         <h2>Book Search</h2>
-        <Form.Label htmlFor="search">Book</Form.Label>
         <Form.Control
           className="mb-2 mr-sm-2"
-          id="search"
           placeholder="enter search term"
           size="lg"
           type="text"
@@ -65,14 +63,14 @@ const SearchForm = () => {
       </Form>
       {books.length ? (
         <>
-        <h3>Your Results</h3>
+        <h5>Your Results</h5>
         <BookCard books={books} saveBook={saveBook}/>
         </>
       ) : (
-        <h3>Your results will appear here</h3>
+        <h5 >Your results will appear here</h5>
       )}
       {saved && (
-        <h3>booked saved</h3>
+        <h5>booked saved</h5>
       )}
     </>
   );
