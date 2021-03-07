@@ -12,10 +12,10 @@ const BookCard = ({ books, saveBook }) => {
         {books.map((book) => (
           <Col key={book.id} >
           <Card style={{ width: "18rem" }}>
-            <Card.Img style={{ height: '446px' }} className="cardImage" variant="top" src={book.volumeInfo.imageLinks.thumbnail}/>
+          <Card.Img style={{ height: '446px' }} className="cardImage" variant="top" src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://picsum.photos/200/300"}/>
             <Card.Body>
               <Card.Title>{book.volumeInfo.title}</Card.Title>
-              <Card.Text>Written by: {book.volumeInfo.authors.map(a => <p>{a}</p>)}</Card.Text>
+              <Card.Title>Written by: {book.volumeInfo.authors && book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(", ") : book.volumeInfo.authors}</Card.Title>
               <Card.Text>{book.volumeInfo.description}</Card.Text>
               <a href={book.volumeInfo.previewLink}>view book</a>{" "}
               <Button variant="primary" onClick={() => saveBook(book.id)}>save book</Button>
@@ -29,3 +29,5 @@ const BookCard = ({ books, saveBook }) => {
 };
 
 export default BookCard;
+
+//              

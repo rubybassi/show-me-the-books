@@ -9,6 +9,7 @@ const SearchForm = () => {
 
   //console.log("intial render");
   const fetchBooks = async (e) => {
+    if (userSearch.length < 3) return;
       e.preventDefault();
       const queryURL = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}`;
       console.log("button clicked");
