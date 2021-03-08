@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8bbd4487.chunk.css",
+    "main.js": "/static/js/main.c9b57662.chunk.js",
+    "main.js.map": "/static/js/main.c9b57662.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.992eac29.js",
+    "runtime-main.js.map": "/static/js/runtime-main.992eac29.js.map",
+    "static/css/2.ff645aaf.chunk.css": "/static/css/2.ff645aaf.chunk.css",
+    "static/js/2.cc530850.chunk.js": "/static/js/2.cc530850.chunk.js",
+    "static/js/2.cc530850.chunk.js.map": "/static/js/2.cc530850.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b894bbd8a76f827d4ae43984c453d08f.js": "/precache-manifest.b894bbd8a76f827d4ae43984c453d08f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ff645aaf.chunk.css.map": "/static/css/2.ff645aaf.chunk.css.map",
+    "static/css/main.8bbd4487.chunk.css.map": "/static/css/main.8bbd4487.chunk.css.map",
+    "static/js/2.cc530850.chunk.js.LICENSE.txt": "/static/js/2.cc530850.chunk.js.LICENSE.txt",
+    "static/media/header.css": "/static/media/books-wide.dc6ec7cb.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.992eac29.js",
+    "static/css/2.ff645aaf.chunk.css",
+    "static/js/2.cc530850.chunk.js",
+    "static/css/main.8bbd4487.chunk.css",
+    "static/js/main.c9b57662.chunk.js"
+  ]
+}

@@ -13,10 +13,7 @@ const BookCard = ({ books, saveBook }) => {
             <div key={book.id} className="card mb-3">
               <div className="row g-0">
                 <div className="col-md-4">
-                  <img
-                    className="cardImage card-img"
-                    src={
-                      book.volumeInfo.imageLinks
+                  <img className="cardImage card-img" alt="book cover" src={ book.volumeInfo.imageLinks
                         ? book.volumeInfo.imageLinks.thumbnail
                         : "https://picsum.photos/200/300"
                     }
@@ -36,7 +33,7 @@ const BookCard = ({ books, saveBook }) => {
                       <small className="text-muted">{book.volumeInfo.publishedDate}</small>
                     </p>
                     <p className="card-text">{book.volumeInfo.description}</p>
-                    <a href={book.volumeInfo.previewLink} className="btn btn-primary">view book</a>{' '}
+                    <a href={book.volumeInfo.previewLink} className="btn btn-secondary">view on Google Books</a>{' '}
                     <Button variant="success" onClick={() => saveBook(book)}>save book</Button>
                   </div>
                 </div>
@@ -50,25 +47,3 @@ const BookCard = ({ books, saveBook }) => {
 };
 
 export default BookCard;
-
-/*
-return (
-  <Container>
-    <Row>    
-    {books.map((book) => (
-      <Col key={book.id} >
-      <Card style={{ width: "18rem" }}>
-      <Card.Img style={{ height: '446px' }} classNameNameName="cardImage" variant="top" src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://picsum.photos/200/300"}/>
-        <Card.Body>
-          <Card.Title>{book.volumeInfo.title}</Card.Title>
-          <Card.Title>Written by: {book.volumeInfo.authors && book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(", ") : book.volumeInfo.authors}</Card.Title>
-          <Card.Text>{book.volumeInfo.description}</Card.Text>
-          <a href={book.volumeInfo.previewLink}>view book</a>{" "}
-          <Button variant="primary" onClick={() => saveBook(book)}>save book</Button>
-        </Card.Body>
-      </Card>
-      </Col>
-  ))}
-  </Row>
-  </Container>
-); */

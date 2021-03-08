@@ -6,43 +6,43 @@ import BookCard from "./BookCard";
 const SearchForm = () => {
   const [userSearch, setUserSearch] = useState("");
   const [books, setBooks] = useState([]);
-  const [saved, setSaved] = useState(false);
 
-  //console.log('saved books on render', savedBooks);
-  //console.log("intial render");
   const fetchBooks = async (e) => {
     if (userSearch.length < 3) return;
-      e.preventDefault();
-      const queryURL = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}`;
-      console.log("button clicked");
-      const response = await fetch(queryURL);
-      const payload = await response.json();
-      console.log("response data", payload);
-      setBooks(payload.items || []);
-      console.log("books array after fetch", books);
-      setUserSearch('');
+    e.preventDefault();
+    const queryURL = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}`;
+    const response = await fetch(queryURL);
+    const payload = await response.json();
+    setBooks(payload.items || []);
+    setUserSearch("");
   };
 
   const saveBook = (book) => {
     const newBook = {
       description: book.volumeInfo.description,
-      image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://picsum.photos/200/300",
+      image: book.volumeInfo.imageLinks
+        ? book.volumeInfo.imageLinks.thumbnail
+        : "https://picsum.photos/200/300",
       link: book.volumeInfo.previewLink,
       title: book.volumeInfo.title,
-      authors: book.volumeInfo.authors
-    }
-    
-    fetch('/api/books', {
-      method: 'post',
+      authors: book.volumeInfo.authors,
+    };
+    postBooks(newBook);
+  };
+
+  const postBooks = async (book) => {
+    const queryURL = `/api/books`;
+    const config = {
+      method: "POST",
       headers: {
-     'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newBook)
-      }).then(res => res.json())
-      .then(res => console.log('book saved in db', res));
-    setSaved(true);
-   // setSaved(false); set timeout here to delay success message
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(book),
+    };
+    const response = await fetch(queryURL, config);
+    const payload = await response.json();
+    console.log("book saved to db", payload);
   };
 
   return (
@@ -51,7 +51,7 @@ const SearchForm = () => {
         <h2>Book Search</h2>
         <Form.Control
           className="mb-2 mr-sm-2"
-          placeholder="enter search term"
+          placeholder="enter title or author"
           size="lg"
           type="text"
           value={userSearch}
@@ -63,15 +63,11 @@ const SearchForm = () => {
       </Form>
       {books.length ? (
         <>
-        <h5>Your Results</h5>
-        <BookCard books={books} saveBook={saveBook}/>
+          <h5>Your Results</h5>
+          <BookCard books={books} saveBook={saveBook} />
         </>
       ) : (
-        <h5 >Your results will appear here</h5>
-      )}
-      {saved && (
-        <h5>booked saved</h5>
-      )}
+        <p>Your search results will appear below.</p>)}
     </>
   );
 };

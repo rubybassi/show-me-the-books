@@ -1,6 +1,6 @@
-import React from 'react'
-import Header from '../components/Header'
-import SavedBooksCard from '../components/SavedBooksCard'
+import React from 'react';
+import Header from '../components/Header';
+import SavedBooksCard from '../components/SavedBooksCard';
 
 const Saved = () => {
   return (
@@ -11,4 +11,4 @@ const Saved = () => {
   )
 }
 
-export default Saved
+export default Saved;
